@@ -38,6 +38,7 @@ parts:
       - -DWITH_INNODB_EXTRA_DEBUG=OFF
       - -DINSTALL_MYSQLTESTDIR=
       - -DDOWNLOAD_BOOST=ON
+      - -DWITH_BOOST=/tmp/boost
       - -DWITH_SYSTEMD=OFF
       - -DSYSCONFDIR=/snap/$SNAPCRAFT_PROJECT_NAME/current/etc
       - -DMYSQL_DATADIR=/var/snap/$SNAPCRAFT_PROJECT_NAME/common/data
