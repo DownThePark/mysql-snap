@@ -7,7 +7,7 @@ description: |
 base: core22
 grade: stable
 confinement: strict
-architectures: [amd64, arm64]
+architectures: [amd64, arm64, armhf]
 
 hooks:
   install:
