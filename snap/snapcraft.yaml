@@ -8,6 +8,13 @@ base: core22
 grade: stable
 confinement: strict
 
+slots:
+  socket:
+    interface: content
+    content: socket-directory
+    write:
+      - $SNAP_DATA/run
+
 hooks:
   install:
     command-chain:
