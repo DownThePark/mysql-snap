@@ -16,6 +16,8 @@ fi
 
 if [ ! -d $SNAP_DATA/log ] ; then
   mkdir $SNAP_DATA/log
+  touch $SNAP_DATA/log/mysql.log
+  touch $SNAP_DATA/log/mysql_error.log
 fi
 
 if [ ! -d $SNAP_DATA/run ] ; then
