@@ -20,6 +20,10 @@ init_snap_data() {
     cp $SNAP/etc/mysql.cnf $SNAP_DATA/etc/
     cp $SNAP/etc/mysqld.cnf $SNAP_DATA/etc/
   fi
+
+  chown -R _daemon_:root $SNAP_DATA
+  chmod 660 $SNAP_DATA/log/mysql.log
+  chmod 660 $SNAP_DATA/log/mysql_error.log
 }
 
 # Initialize contents for $SNAP_COMMON
@@ -27,6 +31,8 @@ init_snap_common() {
   if [ ! -d $SNAP_COMMON/data ] ; then
     mkdir $SNAP_COMMON/data
   fi
+
+  chown -R _daemon_:root: $SNAP_COMMON/data
 }
 
 # Initialize MySQL data directory

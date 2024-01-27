@@ -25,6 +25,9 @@ hooks:
     command-chain:
       - snap/command-chain/first_run.sh
 
+system-usernames:
+  _daemon_: shared
+
 apps:
   mysql-server:
     command: bin/mysql-server.sh
