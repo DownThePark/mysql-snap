@@ -16,21 +16,33 @@ MySQL Server can be installed from the Snap Store using the following command:
 
     sudo snap install mysql-strict
 
-## Configuration & Data
+## Configuration
 
-Configuration files are stored under: `/var/snap/mysql-strict/current/etc`
+### Root Password
+After installation, a randomly generated password is created for the MySQL root user. To retrieve this password, issue the following command:
 
-Log files file are stored under: `/var/snap/mysql-strict/current/log`
+    mysql-strict.temporary-root-password
 
-Databases are stored under: `/var/snap/mysql-strict/common/data`
+This password is stored in plaintext on your file system. Therefore, it is **important** to change it **immediately**!
 
-## Connection
+    mysql-strict.mysql -u root -p
+    ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'YOUR_NEW_PASS';
+
+## Connecting
 
 By default, MySQL listens on `127.0.0.1:3306`.
 
-If you would like to change the listening address and/or port, you can do so by editing:
+Additionally, a socket is available at: `/var/snap/mysql-strict/current/run/mysql.sock`
 
-`/var/snap/mysql-strict/current/etc/mysqld.cnf`
+If you would like to change the listening address and/or port, you can do so in: `/var/snap/mysql-strict/current/etc/mysqld.cnf`
+
+### Data Files & Folders
+
+Configuration: `/var/snap/mysql-strict/current/etc`
+
+Logs: `/var/snap/mysql-strict/current/log`
+
+Databases: `/var/snap/mysql-strict/common/data`
 
 ## Applying Changes
 
