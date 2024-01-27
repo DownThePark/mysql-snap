@@ -28,7 +28,7 @@ This password is stored in plaintext on your file system. Therefore, it is **imp
     mysql-strict.mysql -u root -p
     ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'YOUR_NEW_PASS';
 
-## Connecting
+### Connecting
 
 By default, MySQL listens on `127.0.0.1:3306`.
 
@@ -36,7 +36,7 @@ Additionally, a socket is available at: `/var/snap/mysql-strict/current/run/mysq
 
 If you would like to change the listening address and/or port, you can do so in: `/var/snap/mysql-strict/current/etc/mysqld.cnf`
 
-### Data Files & Folders
+### Files & Folders
 
 Configuration: `/var/snap/mysql-strict/current/etc`
 
@@ -44,11 +44,27 @@ Logs: `/var/snap/mysql-strict/current/log`
 
 Databases: `/var/snap/mysql-strict/common/data`
 
-## Applying Changes
+### Applying Changes
 
 MySQL will need to be restarted after any changes are made to the configuration.
 
     sudo snap restart mysql-strict
+
+## Commands
+
+This snap comes packaged with a number of useful commands:
+- `mysql-strict.mysql`
+- `mysql-strict.mysqladmin`
+- `mysql-strict.mysqldump`
+- `mysql-strict.mysqlimport`
+
+For convenience, you can create an an alias for any of these commands using snapd's built-in alias feature. For example:
+
+    sudo snap alias mysql-strict.mysql mysql
+
+This way, you can now simply log into the MySQL server with just:
+    
+    mysql -u root -p
 
 ## Building
 
