@@ -1,8 +1,10 @@
 name: mysql-strict
 version: '8.0.36'
-summary: MySQL is an open-source relational database management system.
+summary: Powerful open-source relational database management system
 description: |
-  MySQL is an open-source relational database management system.
+  Developed by Oracle®, MySQL is the world's most popular open-source relational
+  database management system. The MySQL website (http://www.mysql.com/) provides
+  the latest information about MySQL software.
 
 base: core22
 grade: stable
