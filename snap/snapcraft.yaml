@@ -30,6 +30,12 @@ apps:
     plugs: [network, network-bind]
   mysql:
     command: usr/bin/mysql
+  mysqladmin:
+    command: usr/bin/mysqladmin
+  mysqldump:
+    command: usr/bin/mysqldump
+  mysqlimport:
+    command: usr/bin/mysqlimport
 
 parts:
   mysql:
