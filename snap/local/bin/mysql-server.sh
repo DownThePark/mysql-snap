@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # Start MySQL server
-$SNAP/usr/bin/mysqld --defaults-file=$SNAP/etc/my.cnf
+gosu snap_daemon $SNAP/usr/bin/mysqld --defaults-file=$SNAP/etc/my.cnf

@@ -21,9 +21,11 @@ init_snap_data() {
     cp $SNAP/etc/mysqld.cnf $SNAP_DATA/etc/
   fi
 
-  chown -R snap_daemon:root $SNAP_DATA
-  chmod 660 $SNAP_DATA/log/mysql.log
-  chmod 660 $SNAP_DATA/log/mysql_error.log
+  if [ $(find $SNAP_DATA/etc -maxdepth 0 -printf '%u\n') == 'root' ] ; then
+    chown -R snap_daemon:root $SNAP_DATA/etc
+    chown -R snap_daemon:root $SNAP_DATA/log
+    chown -R snap_daemon:root $SNAP_DATA/run
+  fi
 }
 
 # Initialize contents for $SNAP_COMMON
@@ -32,19 +34,22 @@ init_snap_common() {
     mkdir $SNAP_COMMON/data
   fi
 
-  chown -R snap_daemon:root: $SNAP_COMMON/data
+  if [ $(find $SNAP_COMMON/data -maxdepth 0 -printf '%u\n') == 'root' ] ; then
+    chown snap_daemon:root $SNAP_COMMON/data
+  fi
 }
 
 # Initialize MySQL data directory
 init_mysql_data() {
   if [ -z $(ls -A $SNAP_COMMON/data) ] ; then
-    $SNAP/usr/bin/mysqld --defaults-file=$SNAP/etc/my.cnf --initialize --console
-    chmod -R 700 $SNAP_COMMON/data
+    gosu snap_daemon $SNAP/usr/bin/mysqld --defaults-file=$SNAP/etc/my.cnf --initialize --console
     if [ ! -f $SNAP_COMMON/data/mysql.ibd ] ; then
       echo "Error: MySQL was unable to initialize the data directory at $SNAP_COMMON/data"
       exit 1
     fi
   fi
+
+  gosu snap_daemon chmod 770 $SNAP_COMMON/data
 }
 
 init_snap_data
