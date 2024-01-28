@@ -84,6 +84,12 @@ parts:
       rm -f rst.css
       rm -rf status
       rm -rf tools
+  gosu:
+    plugin: go
+    source-type: tar
+    source: https://github.com/tianon/gosu/archive/refs/tags/1.17.tar.gz
+    build-snaps:
+      - go
   local:
     plugin: dump
     source-type: local
