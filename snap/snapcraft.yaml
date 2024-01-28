@@ -68,8 +68,11 @@ parts:
       - pkg-config
       - libssl-dev
       - libncurses5-dev
+      - util-linux
     override-prime: |
       craftctl default
+      if [ ! -d bin ] ; then mkdir bin ; fi
+      cp /usr/bin/setpriv bin/
       find "usr/bin" -type f -exec sh -c 'grep -IL . "$1" || strip --strip-all "$1"' sh "{}" \;
       rm -f INSTALL
       rm -f JAMROOT
@@ -84,16 +87,10 @@ parts:
       rm -f rst.css
       rm -rf status
       rm -rf tools
-  gosu:
-    plugin: go
-    source-type: tar
-    source: https://github.com/tianon/gosu/archive/refs/tags/1.17.tar.gz
-    build-snaps:
-      - go
   local:
     plugin: dump
     source-type: local
     source: snap/local
     override-prime: |
       craftctl default
-      sed -i 's/_NAME_/$SNAPCRAFT_PROJECT_NAME/g' etc/*
+      sed -i 's/_NAME_/$SNAPCRAFT_PROJECT_NAME/g' etc/*.cnf

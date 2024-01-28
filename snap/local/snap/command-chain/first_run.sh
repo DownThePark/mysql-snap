@@ -42,14 +42,14 @@ init_snap_common() {
 # Initialize MySQL data directory
 init_mysql_data() {
   if [ -z $(ls -A $SNAP_COMMON/data) ] ; then
-    gosu snap_daemon $SNAP/usr/bin/mysqld --defaults-file=$SNAP/etc/my.cnf --initialize --console
+    $SNAP/bin/setpriv.sh $SNAP/usr/bin/mysqld --defaults-file=$SNAP/etc/my.cnf --initialize --console
     if [ ! -f $SNAP_COMMON/data/mysql.ibd ] ; then
       echo "Error: MySQL was unable to initialize the data directory at $SNAP_COMMON/data"
       exit 1
     fi
   fi
 
-  gosu snap_daemon chmod 770 $SNAP_COMMON/data
+  $SNAP/bin/setpriv.sh chmod 770 $SNAP_COMMON/data
 }
 
 init_snap_data
