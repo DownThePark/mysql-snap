@@ -35,7 +35,7 @@ init_snap_common() {
   fi
 
   if [ $(find $SNAP_COMMON/data -maxdepth 0 -printf '%u\n') == 'root' ] ; then
-    chown snap_daemon:root $SNAP_COMMON/data
+    chown -R snap_daemon:root $SNAP_COMMON/data
   fi
 }
 
