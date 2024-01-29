@@ -11,7 +11,7 @@ grade: stable
 confinement: strict
 
 slots:
-  socket:
+  mysql-socket:
     interface: content
     content: socket-directory
     write:
