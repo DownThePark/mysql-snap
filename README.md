@@ -24,7 +24,7 @@ A randomly generated password is automatically created for the MySQL `root` user
 
     sudo mysql-strict.rootpass
 
-The MySQL server will prevent you from using itself until you change this password. You can use the following commands to do so (don't forget to change `YOUR_NEW_PASS` with a strong password):
+MySQL will prevent itself from being used until you change this password. You can use the following commands to do so (don't forget to change `YOUR_NEW_PASS` with a strong password):
 
     mysql-strict.mysql -u root -p
     ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'YOUR_NEW_PASS';
