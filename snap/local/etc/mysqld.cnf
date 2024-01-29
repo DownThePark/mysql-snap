@@ -19,15 +19,33 @@ mysqlx_port		= 33060
 #
 key_buffer_size		= 16M
 myisam-recover-options	= BACKUP
-max_allowed_packet	= 64M
-thread_stack		= 256K
-thread_cache_size	= 0
-max_connections		= 151
-table_open_cache	= 4000
+#max_allowed_packet	= 64M
+#thread_stack		= 256K
+#thread_cache_size	= -1
+#max_connections	= 151
+#table_open_cache	= 4000
 
 #
-# * Logging
+# * Logging and Replication
 #
-log_error               = /var/snap/_NAME_/current/log/error.log
-# general_log_file        = /var/snap/_NAME_/current/log/query.log
-# general_log             = 1
+# Log all queries
+# Be aware that this log type is a performance killer.
+#general_log_file        = /var/snap/_NAME_/current/log/query.log
+#general_log             = 1
+
+# Error log - should be very few entries.
+log_error		= /var/snap/_NAME_/current/log/error.log
+
+# Here you can see queries with especially long duration
+#slow_query_log		= 1
+#slow_query_log_file	= /var/snap/_NAME_/current/mysql-slow.log
+#long_query_time	= 2
+#log-queries-not-using-indexes
+
+# The following can be used as easy to replay backup logs or for replication.
+#server-id		= 1
+#log_bin			= /var/snap/_NAME_/current/mysql-bin.log
+#binlog_expire_logs_seconds	= 2592000
+max_binlog_size		= 100M
+#binlog_do_db          = include_database_name
+#binlog_ignore_db      = include_database_name
