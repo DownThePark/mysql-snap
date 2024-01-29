@@ -7,8 +7,8 @@ This is a community-developed snap for the upstream [MySQL Server](https://githu
 
 ## Features
 - Enforced strict confinement, using only the [network](https://snapcraft.io/docs/network-interface) and [network-bind](https://snapcraft.io/docs/network-bind-interface) interfaces.
-- Support for multiple CPU architectures.
-- Runs as a non-root user for extra security
+- Daemon runs as non-root user for improved security
+- Support for multiple CPU architectures
 
 ## Installation
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/mysql-strict)
@@ -22,7 +22,7 @@ MySQL Server can be installed from the Snap Store using the following command:
 ### Root Password
 After installation, a randomly generated password is created for the MySQL root user. To retrieve this password, issue the following command:
 
-    mysql-strict.temporary-root-password
+    sudo mysql-strict.rootpass
 
 This password is stored in plaintext on your file system. Therefore, it is **important** to change it **immediately**!
 
