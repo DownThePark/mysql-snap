@@ -10,8 +10,8 @@ init_snap_data() {
 
   # Logs
   mkdir $SNAP_DATA/log
-  touch $SNAP_DATA/log/mysql.log
-  touch $SNAP_DATA/log/mysql_error.log
+  touch $SNAP_DATA/log/query.log
+  touch $SNAP_DATA/log/error.log
   chmod -R o-rwx $SNAP_DATA/log
   chown -R snap_daemon:root $SNAP_DATA/log
 

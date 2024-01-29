@@ -28,6 +28,6 @@ table_open_cache	= 4000
 #
 # * Logging
 #
-log_error               = /var/snap/_NAME_/current/log/mysql_error.log
-# general_log_file        = /var/snap/_NAME_/current/log/mysql.log
+log_error               = /var/snap/_NAME_/current/log/error.log
+# general_log_file        = /var/snap/_NAME_/current/log/query.log
 # general_log             = 1
