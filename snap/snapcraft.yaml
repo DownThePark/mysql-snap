@@ -23,7 +23,7 @@ hooks:
       - snap/command-chain/first_run.sh
   post-refresh:
     command-chain:
-      - snap/command-chain/first_run.sh
+      - snap/command-chain/refresh_run.sh
 
 system-usernames:
   snap_daemon: shared
