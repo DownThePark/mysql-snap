@@ -1,5 +1,7 @@
 #!/bin/bash
 
+if [ "$(id -u)" -ne 0 ]; then echo "Please re-run this program as root." >&2; exit 1; fi
+
 echo ""
 cat $SNAP_DATA/log/error.log | grep -o "A temporary password is generated for root@localhost:.*"
 echo ""
