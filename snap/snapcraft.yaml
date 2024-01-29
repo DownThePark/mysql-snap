@@ -41,8 +41,8 @@ apps:
     command: usr/bin/mysqldump
   mysqlimport:
     command: usr/bin/mysqlimport
-  temporary-root-password:
-    command: bin/temporary-root-password
+  rootpass:
+    command: bin/rootpass.sh
 
 parts:
   mysql:
