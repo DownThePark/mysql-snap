@@ -47,7 +47,7 @@ apps:
 parts:
   mysql:
     plugin: cmake
-    source: https://dev.mysql.com/get/Downloads/MySQL-8.0/mysql-$SNAPCRAFT_PROJECT_VERSION.tar.gz
+    source: https://cdn.mysql.com/Downloads/MySQL-8.0/mysql-boost-$SNAPCRAFT_PROJECT_VERSION.tar.gz
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr
       - -DBUILD_CONFIG=mysql_release
@@ -56,8 +56,8 @@ parts:
       - -DWITH_DEBUG=OFF
       - -DWITH_INNODB_EXTRA_DEBUG=OFF
       - -DINSTALL_MYSQLTESTDIR=
-      - -DDOWNLOAD_BOOST=ON
-      - -DWITH_BOOST=/tmp/boost
+      - -DDOWNLOAD_BOOST=OFF
+      - -DWITH_BOOST=$CRAFT_PART_SRC/boost
       - -DWITH_SYSTEMD=OFF
       - -DSYSCONFDIR=/snap/$SNAPCRAFT_PROJECT_NAME/current/etc
       - -DMYSQL_DATADIR=/var/snap/$SNAPCRAFT_PROJECT_NAME/common/data
@@ -74,19 +74,6 @@ parts:
       if [ ! -d bin ] ; then mkdir bin ; fi
       cp /usr/bin/setpriv bin/
       find "usr/bin" -type f -exec sh -c 'grep -IL . "$1" || strip --strip-all "$1"' sh "{}" \;
-      rm -f INSTALL
-      rm -f JAMROOT
-      rm -f LICENSE_1_0.txt
-      rm -f README.md
-      rm -rf boost*
-      rm -f bootstrap*
-      rm -rf doc
-      rm -f index*
-      rm -rf libs
-      rm -rf more
-      rm -f rst.css
-      rm -rf status
-      rm -rf tools
   local:
     plugin: dump
     source-type: local
