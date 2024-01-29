@@ -3,12 +3,10 @@
 
 ## Introduction
 
-This is a community-developed snap for the upstream [MySQL Server](https://github.com/mysql/mysql-server/tags) project.
-
-This snap puts emphasis on being able to run MySQL with as minimal privileges as needed, while still maintaining the ability to run as a full-fledged MySQL server.
+This is a community-developed MySQL Server snap, that puts emphasis on being able to run MySQL with as minimal privileges as needed, while still maintaining the ability to run as a stable, full-fledged MySQL server.
 
 ## Features
-- Enforced strict confinement, using only the [network](https://snapcraft.io/docs/network-interface) and [network-bind](https://snapcraft.io/docs/network-bind-interface) interfaces.
+- Enforced strict confinement (uses only the [network](https://snapcraft.io/docs/network-interface) and [network-bind](https://snapcraft.io/docs/network-bind-interface) interfaces)
 - Daemon runs as non-root user for improved security
 - Support for multiple CPU architectures
 
@@ -22,11 +20,11 @@ MySQL Server can be installed from the Snap Store using the following command:
 ## Configuration
 
 ### Root Password
-After installation, a randomly generated password is created for the MySQL root user. To retrieve this password, issue the following command:
+A randomly generated password is automatically created for the MySQL `root` user. To retrieve this password, issue the following command:
 
     sudo mysql-strict.rootpass
 
-MySQL will prevent you from using the MySQL server until you change this password. You can use the following commands to do so (don't forget to change `YOUR_NEW_PASS` with a strong password):
+The MySQL server will prevent you from using itself until you change this password. You can use the following commands to do so (don't forget to change `YOUR_NEW_PASS` with a strong password):
 
     mysql-strict.mysql -u root -p
     ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'YOUR_NEW_PASS';
