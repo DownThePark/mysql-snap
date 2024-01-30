@@ -9,6 +9,7 @@ description: |
 base: core22
 grade: stable
 confinement: strict
+license: GPL-3.0
 
 slots:
   mysql-socket:
