@@ -3,7 +3,7 @@
 
 ## Introduction
 
-This is a community-developed MySQL Server snap, that puts emphasis on being able to run MySQL with as minimal privileges as needed, while still maintaining the ability to run as a stable, full-fledged MySQL server.
+This is a community-developed MySQL Server snap that runs with as minimal privileges as needed, while still maintaining the ability to run as a stable, full-fledged MySQL server.
 
 ## Features
 - Enforced strict confinement (uses only the [network](https://snapcraft.io/docs/network-interface) and [network-bind](https://snapcraft.io/docs/network-bind-interface) interfaces)
