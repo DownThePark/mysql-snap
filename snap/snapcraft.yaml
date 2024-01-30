@@ -59,7 +59,6 @@ parts:
       - -DDOWNLOAD_BOOST=OFF
       - -DWITH_BOOST=$CRAFT_PART_SRC/boost
       - -DWITH_SYSTEMD=OFF
-      - -DSYSCONFDIR=/snap/$SNAPCRAFT_PROJECT_NAME/current/etc
       - -DMYSQL_DATADIR=/var/snap/$SNAPCRAFT_PROJECT_NAME/common/data
       - -DMYSQL_UNIX_ADDR=/var/snap/$SNAPCRAFT_PROJECT_NAME/current/run/mysql.sock
       - -DMYSQLX_UNIX_ADDR=/var/snap/$SNAPCRAFT_PROJECT_NAME/current/run/mysqlx.sock
