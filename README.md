@@ -3,10 +3,10 @@
 
 ## Introduction
 
-This is a community-developed MySQL Server snap, made with the goal of running with minimal privileges, while maintaining the ability to run as a stable, full-fledged MySQL server.
+This is a community-developed MySQL Server snap, made with the goal of having the ability to run with minimal privileges, while maintaining the ability to run as a stable, full-fledged MySQL server.
 
 ## Features
-- Enforced strict confinement (uses only the [network](https://snapcraft.io/docs/network-interface) and [network-bind](https://snapcraft.io/docs/network-bind-interface) interfaces)
+- Enforced strict confinement (only uses the [network](https://snapcraft.io/docs/network-interface) and [network-bind](https://snapcraft.io/docs/network-bind-interface) interfaces)
 - Non-root daemon for improved security
 - Support for multiple CPU architectures
 
@@ -20,7 +20,7 @@ MySQL Server can be installed from the Snap Store using the following command:
 ## Configuration
 
 ### Root Password
-During installation, a randomly generated password is automatically created for the MySQL `root` user. To retrieve this password, issue the following command:
+During installation, a randomly generated password is created for the MySQL `root` user. To retrieve this password, issue the following command:
 
     sudo mysql-strict.rootpass
 
@@ -62,7 +62,7 @@ This way, you can now simply log into the MySQL server with just:
 
 ## Building
 
-Install and configure needed dependencies.
+First, install and configure the dependencies.
 
     sudo snap install snapcraft --classic
     sudo snap install lxd
