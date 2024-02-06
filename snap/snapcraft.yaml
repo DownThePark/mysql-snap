@@ -30,8 +30,8 @@ system-usernames:
   snap_daemon: shared
 
 apps:
-  mysql-server:
-    command: bin/mysql-server.sh
+  mysqld:
+    command: bin/mysqld.sh
     daemon: simple
     plugs: [network, network-bind]
   mysql:
