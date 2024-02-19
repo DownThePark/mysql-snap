@@ -1,12 +1,12 @@
-# MySQL Server Snap
+# MySQL Snap
 [![mysql-strict](https://snapcraft.io/mysql-strict/badge.svg)](https://snapcraft.io/mysql-strict)
 
 ## Introduction
 
-This is a community-developed MySQL Server snap, made with the goal to have the ability to run with minimal privileges, while maintaining the ability to run as a stable, full-fledged MySQL server.
+This is a community-developed MySQL snap, made with the goal to have the ability to run with minimal privileges, while maintaining the ability to run as a stable, full-fledged MySQL server.
 
 ## Features
-- Enforced strict confinement (only uses the [network](https://snapcraft.io/docs/network-interface) and [network-bind](https://snapcraft.io/docs/network-bind-interface) interfaces)
+- Strict confinement (only uses the `network` and `network-bind` interfaces)
 - Non-root daemon for improved security
 - Support for multiple CPU architectures
 
@@ -17,7 +17,21 @@ This snap can be installed from the Snap Store using the following command:
 
     sudo snap install mysql-strict
 
-## Commands
+> [!NOTE]
+> During installation, a randomly generated password is created for the MySQL `root` user. To retrieve it, issue the following command:
+
+    sudo mysql-strict.rootpass
+
+> [!WARNING]
+> MySQL will prevent itself from being used until you change this password. To update it, start by logging into the MySQL server:
+
+    mysql-strict.mysql -u root -p
+
+Afterwards, execute the following SQL statement (replace `YOUR_NEW_PASS` below with a strong password):
+    
+    ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'YOUR_NEW_PASS';
+
+## Usage
 
 This snap comes packaged with a number of useful commands:
 - `mysql-strict.mysql`
@@ -25,7 +39,8 @@ This snap comes packaged with a number of useful commands:
 - `mysql-strict.mysqldump`
 - `mysql-strict.mysqlimport`
 
-For convenience, you can create an an alias for any of these commands using snapd's built-in alias feature. For example:
+> [!TIP]
+> For convenience, you can create an an alias for any of these commands using snapd's alias feature. For example:
 
     sudo snap alias mysql-strict.mysql mysql
 
@@ -35,52 +50,19 @@ This way, you can now simply log into the MySQL server with just:
 
 ## Configuration
 
-### Root Password
-During installation, a randomly generated password is created for the MySQL `root` user. To retrieve it, issue the following command:
-
-    sudo mysql-strict.rootpass
-
-MySQL will prevent itself from being used until you change this password. To update it, start by logging to the MySQL server:
-
-    mysql-strict.mysql -u root -p
-
-Afterwards, execute the following SQL statement (replace `YOUR_NEW_PASS` below with a strong password):
-    
-    ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'YOUR_NEW_PASS';
-
-### Folders
-
 | Type            | Location                                |
 |-----------------|-----------------------------------------|
-|Configuration    |/var/snap/mysql-strict/current/etc       |
+|Databases        |/var/snap/mysql-strict/common/data   |
 |Logs             |/var/snap/mysql-strict/current/log       |
+|Settings         |/var/snap/mysql-strict/current/etc       |
 |Sockets          |/var/snap/mysql-strict/current/run       |
-|Databases        |/var/snap/mysql-strict/**common**/data   |
 
-### Applying Changes
-
-MySQL will need to be restarted after any changes are made to any of the configuration files found under `/var/snap/mysql-strict/current/etc`.
+>[!NOTE]
+> MySQL will need to be restarted after any changes are made to any of the configuration files.
 
     sudo snap restart mysql-strict
 
 ## To Do List:
 - Support mysqlrouter
 - Support log rotation
-
-## Building
-
-First, install and configure the dependencies.
-
-    sudo snap install snapcraft --classic
-    sudo snap install lxd
-    sudo lxd init --minimal
-
-Then, add yourself to the lxd group. Afterwards, log out and log back in.
-
-    sudo usermod -a -G lxd $USER
-
-Thereafter, clone this repository, change your working directory into it, and finally, run the build.
-
-    git clone https://github.com/DownThePark/snapcraft-mysql-strict.git
-    cd snapcraft-mysql-strict
-    snapcraft
+- Support multiple languages
