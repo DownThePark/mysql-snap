@@ -21,7 +21,7 @@ slots:
 hooks:
   install:
     command-chain:
-      - snap/command-chain/first_run.sh
+      - snap/command-chain/install.sh
   post-refresh:
     command-chain:
       - snap/command-chain/refresh_run.sh
