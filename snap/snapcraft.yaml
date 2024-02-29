@@ -22,9 +22,9 @@ hooks:
   install:
     command-chain:
       - snap/command-chain/install.sh
-  post-refresh:
-    command-chain:
-      - snap/command-chain/refresh_run.sh
+  #post-refresh:
+  #  command-chain:
+  #    - snap/command-chain/refresh_run.sh
 
 system-usernames:
   snap_daemon: shared
