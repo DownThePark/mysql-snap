@@ -6,10 +6,10 @@
 This is a community-developed MySQL snap, made with the goal to have the ability to run with minimal privileges, while maintaining the ability to run as a stable, full-fledged MySQL server.
 
 ## Features
-- Strict confinement (only uses the `network` and `network-bind` interfaces)
-- Non-root daemon (for improved security)
+- Strict confinement
+- Rootless daemon
 - Requires manually set MySQL root password
-- Disallows Linux root user from logging into MySQL without password
+- Disallows passwordless login via Linux root user
 - Support for multiple CPU architectures
 
 ## Installation
@@ -40,7 +40,6 @@ This snap comes packaged with a number of useful commands:
 This way, you can now simply log into the MySQL server with just:
 
     mysql -u root -p
-
 
 ## Data
 
