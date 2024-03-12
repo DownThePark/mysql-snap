@@ -6,8 +6,10 @@
 This is a community-developed MySQL snap, made with the goal to have the ability to run with minimal privileges, while maintaining the ability to run as a stable, full-fledged MySQL server.
 
 ## Features
-- Strict confinement (only uses the `network` and `network-bind` interfaces)
-- Non-root daemon for improved security
+- Strict confinement
+- Rootless daemon
+- Requires manually set MySQL root password
+- Disallows passwordless login via Linux root user
 - Support for multiple CPU architectures
 
 ## Installation
@@ -22,16 +24,7 @@ This snap can be installed from the Snap Store using the following command:
 
     sudo mysql-strict.rootpass
 
-> [!WARNING]
-> MySQL will prevent itself from being used until you change this password. To update it, start by logging into the MySQL server:
-
-    mysql-strict.mysql -u root -p
-
-Afterwards, execute the following SQL statement (replace `YOUR_NEW_PASS` below with a strong password):
-    
-    ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'YOUR_NEW_PASS';
-
-## Usage
+## Commands
 
 This snap comes packaged with a number of useful commands:
 - `mysql-strict.mysql`
@@ -48,7 +41,7 @@ This way, you can now simply log into the MySQL server with just:
 
     mysql -u root -p
 
-## Configuration
+## Data
 
 | Type            | Location                                |
 |-----------------|-----------------------------------------|
@@ -57,12 +50,5 @@ This way, you can now simply log into the MySQL server with just:
 |Settings         |/var/snap/mysql-strict/current/etc       |
 |Sockets          |/var/snap/mysql-strict/current/run       |
 
->[!NOTE]
-> MySQL will need to be restarted after any changes are made to any of the configuration files.
-
-    sudo snap restart mysql-strict
-
-## To Do List:
-- Support mysqlrouter
-- Support log rotation
-- Support multiple languages
+> [!TIP]
+> For creating backups, it is recommended to use snapd's snapshot feature. See [here](https://snapcraft.io/docs/snapshots) for more details.
