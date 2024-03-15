@@ -4,7 +4,6 @@
 init_snap_data() {
   # Configuration
   mkdir $SNAP_DATA/etc
-  cp $SNAP/etc/mysql.cnf $SNAP_DATA/etc
   cp $SNAP/etc/mysqld.cnf $SNAP_DATA/etc
   chown -R snap_daemon:root $SNAP_DATA/etc
 
