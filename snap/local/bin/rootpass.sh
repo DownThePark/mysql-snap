@@ -4,7 +4,7 @@ if [ "$(id -u)" -ne 0 ]; then echo "Error: This command requires root privileges
 
 cat $SNAP_DATA/log/error.log | grep -o "A temporary password is generated for root@localhost:.*"
 echo -e "
-To update this password, start by logging to the MySQL server:
+To update this password, start by logging into MySQL:
 
 > mysql-strict.mysql -u root -p
 
