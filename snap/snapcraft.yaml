@@ -36,12 +36,16 @@ apps:
     plugs: [network, network-bind]
   mysql:
     command: usr/bin/mysql
+    plugs: [network, home, removable-media]
   mysqladmin:
     command: usr/bin/mysqladmin
+    plugs: [network, home, removable-media]
   mysqldump:
     command: usr/bin/mysqldump
+    plugs: [network, home, removable-media]
   mysqlimport:
     command: usr/bin/mysqlimport
+    plugs: [network, home, removable-media]
   rootpass:
     command: bin/rootpass.sh
 
