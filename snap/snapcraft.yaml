@@ -1,5 +1,5 @@
 name: mysql-strict
-version: '9.0.0'
+version: '9.0.1'
 summary: Powerful open-source relational database management system
 description: |
   Developed by Oracle®, MySQL is the world's most popular open-source relational
