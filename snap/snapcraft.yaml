@@ -6,7 +6,7 @@ description: |
   database management system. The MySQL website (http://www.mysql.com/) provides
   the latest information about MySQL software.
 
-base: core22
+base: core24
 grade: stable
 confinement: strict
 license: GPL-3.0
@@ -70,7 +70,11 @@ parts:
       - pkg-config
       - libssl-dev
       - libncurses5-dev
+      - libaio-dev
+      - libtirpc-dev
       - util-linux
+    stage-packages:
+      - libaio1t64
     override-prime: |
       craftctl default
       if [ ! -d bin ] ; then mkdir bin ; fi
