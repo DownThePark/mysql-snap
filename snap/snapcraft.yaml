@@ -56,7 +56,6 @@ parts:
       - -DCMAKE_BUILD_TYPE=Release
       - -DWITH_UNIT_TESTS=OFF
       - -DWITH_DEBUG=OFF
-      - -DWITH_INNODB_EXTRA_DEBUG=OFF
       - -DINSTALL_MYSQLTESTDIR=
       - -DWITH_SYSTEMD=OFF
       - -DMYSQL_DATADIR=/var/snap/$SNAPCRAFT_PROJECT_NAME/common/data
