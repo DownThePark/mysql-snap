@@ -78,7 +78,7 @@ parts:
     plugin: dump
     source-type: local
     source: snap/local
-    override-prime: |
+    override-stage: |
       craftctl default
       sed -i 's/_NAME_/$SNAPCRAFT_PROJECT_NAME/g' bin/*.sh
       sed -i 's/_NAME_/$SNAPCRAFT_PROJECT_NAME/g' etc/*.cnf
