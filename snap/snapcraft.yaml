@@ -55,9 +55,7 @@ parts:
       - -DBUILD_CONFIG=mysql_release
       - -DCMAKE_BUILD_TYPE=Release
       - -DWITH_UNIT_TESTS=OFF
-      - -DWITH_DEBUG=OFF
       - -DINSTALL_MYSQLTESTDIR=
-      - -DWITH_SYSTEMD=OFF
       - -DMYSQL_DATADIR=/var/snap/$SNAPCRAFT_PROJECT_NAME/common/data
       - -DMYSQL_UNIX_ADDR=/var/snap/$SNAPCRAFT_PROJECT_NAME/current/run/mysql.sock
       - -DMYSQLX_UNIX_ADDR=/var/snap/$SNAPCRAFT_PROJECT_NAME/current/run/mysqlx.sock
