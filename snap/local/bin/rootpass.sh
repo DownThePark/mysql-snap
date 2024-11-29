@@ -6,7 +6,7 @@ cat $SNAP_DATA/log/error.log | grep -o "A temporary password is generated for ro
 echo -e "
 To update this password, start by logging into MySQL:
 
-> mysql-strict.mysql -u root -p
+> _NAME_.mysql -u root -p
 
 Afterwards, execute the following SQL statement (replace YOUR_NEW_PASS below with a strong password):
 
