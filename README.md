@@ -22,7 +22,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'Y0UR_N3W
 
 ## Commands
 
-This snap comes with a number of useful commands to help you work with your MySQL instance.
+This snap comes packaged with a number of useful commands.
 - `mysql-strict.mysql`
 - `mysql-strict.mysqladmin`
 - `mysql-strict.mysqldump`
