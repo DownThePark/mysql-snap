@@ -80,7 +80,7 @@ parts:
       - libtirpc-dev
       - util-linux
     override-build: |
-      patch $CRAFT_PART_SRC/client/mysql_secure_installation.cc $CRAFT_STAGE/build/mysql_secure_installation-remove-root-pw-creation.patch || true
+      patch $CRAFT_PART_SRC/client/mysql_secure_installation.cc $CRAFT_STAGE/build/mysql_secure_installation-remove-root-pw-creation.patch
       craftctl default
     stage-packages:
       - libaio1t64
