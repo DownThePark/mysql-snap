@@ -20,6 +20,7 @@ slots:
 
 hooks:
   install:
+    plugs: [network, network-bind]
     command-chain:
       - snap/command-chain/install.sh
 
@@ -43,11 +44,20 @@ apps:
   mysqlimport:
     command: usr/bin/mysqlimport
     plugs: [network, home, removable-media]
-  rootpass:
-    command: bin/rootpass.sh
+  mysql-secure-installation:
+    command: usr/bin/mysql_secure_installation
 
 parts:
+  local:
+    plugin: dump
+    source-type: local
+    source: snap/local
+    override-stage: |
+      craftctl default
+      sed -i 's/_NAME_/$SNAPCRAFT_PROJECT_NAME/g' bin/*.sh
+      sed -i 's/_NAME_/$SNAPCRAFT_PROJECT_NAME/g' etc/*.cnf
   mysql:
+    after: [local]
     plugin: cmake
     source: https://cdn.mysql.com/Downloads/MySQL-8.0/mysql-boost-$SNAPCRAFT_PROJECT_VERSION.tar.gz
     cmake-parameters:
@@ -69,8 +79,11 @@ parts:
       - libssl-dev
       - libncurses5-dev
       - libaio-dev
-      - util-linux
       - libtirpc-dev
+      - util-linux
+    override-build: |
+      patch $CRAFT_PART_SRC/client/mysql_secure_installation.cc $CRAFT_STAGE/build/mysql_secure_installation-remove-root-pw-creation.patch
+      craftctl default
     stage-packages:
       - libaio1t64
     override-prime: |
@@ -78,11 +91,4 @@ parts:
       if [ ! -d bin ] ; then mkdir bin ; fi
       cp /usr/bin/setpriv bin/
       find "usr/bin" -type f -exec sh -c 'grep -IL . "$1" || strip --strip-all "$1"' sh "{}" \;
-  local:
-    plugin: dump
-    source-type: local
-    source: snap/local
-    override-prime: |
-      craftctl default
-      sed -i 's/_NAME_/$SNAPCRAFT_PROJECT_NAME/g' bin/*.sh
-      sed -i 's/_NAME_/$SNAPCRAFT_PROJECT_NAME/g' etc/*.cnf
+      rm -r build/
