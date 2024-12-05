@@ -1,0 +1,28 @@
+Description: Remove the creation of a root password in mysql_secure_installation
+ Since Ubuntu and Debian use the auth_socket plugin for the root user by default,
+ and attempting to set a password for it through "SET_PASSWORD" causes an error,
+ do not create a root password in the mysql_secure_installation script if one
+ has not been set previously. If the user would like to instead use a password
+ they can run
+ ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'password';
+ in the mysql client.
+Author: Lena Voytek <lena.voytek@canonical.com>
+Bug-Ubuntu: https://bugs.launchpad.net/ubuntu/+source/mysql-8.0/+bug/1980466
+---
+
+--- a/client/mysql_secure_installation.cc	2024-11-30 11:36:45.178430283 -0500
++++ b/client/mysql_secure_installation.cc	2024-11-30 11:37:34.352628117 -0500
+@@ -812,8 +812,11 @@
+   }
+ 
+   if (!hadpass) {
+-    fprintf(stdout, "Please set the password for %s here.\n", opt_user);
+-    set_opt_user_password(component_set);
++    fprintf(stdout,
++            "\nSkipping password set for %s as authentication with auth_socket is used by default.\n"
++            "If you would like to use password authentication instead, this can be done with the \"ALTER_USER\" command.\n"
++            "See https://dev.mysql.com/doc/refman/8.0/en/alter-user.html#alter-user-password-management for more information.\n\n"
++            , opt_user);
+   } else if (opt_use_default == false) {
+     char prompt[256];
+     fprintf(stdout, "Using existing password for %s.\n", opt_user);
