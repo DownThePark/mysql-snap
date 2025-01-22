@@ -78,6 +78,7 @@ parts:
       - libncurses5-dev
       - libaio-dev
       - libtirpc-dev
+      - bison
       - util-linux
     override-build: |
       patch $CRAFT_PART_SRC/client/mysql_secure_installation.cc $CRAFT_STAGE/build/mysql_secure_installation-remove-root-pw-creation.patch
