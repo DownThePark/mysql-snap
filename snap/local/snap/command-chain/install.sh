@@ -47,7 +47,7 @@ enable_auth_socket() {
   echo "ALTER USER 'root'@'localhost' IDENTIFIED WITH 'auth_socket';" >> "$init_file"
   echo "SHUTDOWN;" >> "$init_file"
   chown snap_daemon:root "$init_file"
-  $SNAP/bin/setpriv.sh $SNAP/usr/bin/mysqld --user=snap_daemon --skip-networking --skip-mysqlx --init-file="$init_file"
+  $SNAP/bin/setpriv.sh $SNAP/usr/bin/mysqld --defaults-file=$SNAP/etc/my.cnf --skip-networking --init-file="$init_file"
 }
 
 init_snap_data
