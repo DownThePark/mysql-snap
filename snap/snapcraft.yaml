@@ -1,5 +1,5 @@
 name: mysql-strict
-version: '9.6.0'
+version: '9.7.1'
 summary: Powerful open-source relational database management system
 description: |
   Developed by Oracle®, MySQL is the world's most popular open-source relational
@@ -57,7 +57,7 @@ parts:
   mysql:
     after: [local]
     plugin: cmake
-    source: https://cdn.mysql.com/Downloads/MySQL-9.6/mysql-$SNAPCRAFT_PROJECT_VERSION.tar.gz
+    source: https://cdn.mysql.com/Downloads/MySQL-9.7/mysql-$SNAPCRAFT_PROJECT_VERSION.tar.gz
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr
       - -DBUILD_CONFIG=mysql_release
@@ -78,6 +78,7 @@ parts:
       - libtirpc-dev
       - bison
       - util-linux
+      - libcurl4-openssl-dev
     stage-packages:
       - libaio1t64
     override-prime: |
