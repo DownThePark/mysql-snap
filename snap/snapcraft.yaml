@@ -44,8 +44,6 @@ apps:
   mysqlimport:
     command: usr/bin/mysqlimport
     plugs: [network, home, removable-media]
-  mysql-secure-installation:
-    command: usr/bin/mysql_secure_installation
 
 parts:
   local:
@@ -80,9 +78,6 @@ parts:
       - libtirpc-dev
       - bison
       - util-linux
-    override-build: |
-      patch $CRAFT_PART_SRC/client/mysql_secure_installation.cc $CRAFT_STAGE/build/mysql_secure_installation-remove-root-pw-creation.patch
-      craftctl default
     stage-packages:
       - libaio1t64
     override-prime: |
@@ -90,4 +85,3 @@ parts:
       if [ ! -d bin ] ; then mkdir bin ; fi
       cp /usr/bin/setpriv bin/
       find "usr/bin" -type f -exec sh -c 'grep -IL . "$1" || strip --strip-all "$1"' sh "{}" \;
-      rm -r build/
